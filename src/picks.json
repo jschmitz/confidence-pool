@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "player_id": 1,
+        "game_id": 1,
+        "pick": true,
+        "value": 2
+    },
+    {
+        "id": 2,
+        "player_id": 1,
+        "game_id": 1,
+        "pick": false,
+        "value": 1
+    },   
+    {
+        "id": 3,
+        "player_id": 1,
+        "game_id": 3,
+        "pick": true,
+        "value": 3
+    },   
+    {
+        "id": 4,
+        "player_id": 2,
+        "game_id": 1,
+        "pick": true,
+        "value": 2
+    },
+    {
+        "id": 5,
+        "player_id": 2,
+        "game_id": 1,
+        "pick": true,
+        "value": 3
+    },   
+    {
+        "id": 6,
+        "player_id": 1,
+        "game_id": 3,
+        "pick": true,
+        "value": 2
+    }   
+]
