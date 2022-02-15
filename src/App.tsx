@@ -5,6 +5,7 @@ import games from './games.json';
 import picks from './picks.json';
 import players from './players.json';
 import Games from './Games';
+import mash from './mash.json';
 
 function App() {
   return (
@@ -12,26 +13,20 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Confidence Pool</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
 
         <h1>Games</h1>
         <table>
           <th>
             <td>Game</td>
-            <td>Result</td>
-          </th>
-          {games.map(({id, name, result}: any ) => (
-            <tr key={id}>
+            {players.map(({id, name}: any ) => (
               <td>{name}</td>
-              <td>{result}</td>
-            </tr>
+            ))}
+          </th>
+          {games.map(({game_id, name, result}: any ) => (
+              <tr key={game_id}>
+                <td>{name}</td>
+                <td>{result}</td>
+              </tr>
           ))}
         </table>
 
@@ -59,6 +54,27 @@ function App() {
               <td>{value}</td>
             </tr>
           ))}
+        </table>
+
+        <h1>Mash</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Games</th>
+              {players.map(({id, name}: any ) => (
+                  <th key={id}>{name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {mash.map(({id, cells}: any ) => (
+              <tr key={id}>
+                  {cells.map(({id, game_name,pick_value, pick_result}: any) =>
+                    <td key={id} style={ pick_result ? {color:"red"}:{color: "green"} }>{game_name} {pick_value}</td>
+                  )}
+              </tr>
+            ))}
+          </tbody>
         </table>
 
         <Games title="Games" />

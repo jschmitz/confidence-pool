@@ -1,0 +1,60 @@
+[
+    {
+        "id": 100,
+        "cells": [
+
+            {
+                "id": 1,
+                "game_name":"Game 1",
+                "game_id": 1
+            },
+            {
+                "id": 2,
+                "game_id": 1,
+                "game_result": true,
+                "player_id": 1,
+                "pick_id": 1,
+                "pick_result": true,
+                "pick_value":3
+            },
+            {
+                "id": 3,
+                "game_id": 1,
+                "game_result": true,
+                "player_id": 2,
+                "pick_id": 2,
+                "pick_result": false,
+                "pick_value":2
+            }
+        ]
+    },
+    {
+        "id": 200,
+        "cells": [
+
+            {
+                "id": 4,
+                "game_name":"Game 2",
+                "game_id": 2
+            },
+            {
+                "id": 5,
+                "game_id": 2,
+                "game_result": false,
+                "player_id": 1,
+                "pick_id": 3,
+                "pick_result": true,
+                "pick_value":2
+            },
+            {
+                "id": 6,
+                "game_id": 2,
+                "game_result": false,
+                "player_id": 2,
+                "pick_id": 4,
+                "pick_result": true,
+                "pick_value":1
+            }
+        ]
+    }
+]
