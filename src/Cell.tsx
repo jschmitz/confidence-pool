@@ -5,11 +5,13 @@ import PickCell from './PickCell';
 interface Props {
  isGame: boolean;   
  gameName: string;
+ pickValue: number;
+ pickResult: boolean;
 }
 
-const Cell: FC<Props> = ({ isGame, gameName }) => {
+const Cell: FC<Props> = ({ isGame, gameName, pickResult, pickValue }) => {
   return (
-    isGame ? <GameCell gameName={gameName} /> : <PickCell />
+    isGame ? <GameCell gameName={gameName} /> : <PickCell pickValue={pickValue} pickResult={pickResult} />
   );
 };
 

@@ -71,7 +71,7 @@ function App() {
             {mash.map(({id, cells}: any ) => (
               <tr key={id}>
                   {cells.map(({id, game_name, pick_value, pick_result, pick_id}: any) =>
-                    <Cell isGame={ pick_id == null} gameName={game_name} />
+                    <Cell isGame={ pick_id == null} gameName={game_name} pickValue={pick_value} pickResult={pick_result} />
                   )}
               </tr>
             ))}
