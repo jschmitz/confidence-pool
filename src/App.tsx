@@ -6,6 +6,7 @@ import picks from './picks.json';
 import players from './players.json';
 import Games from './Games';
 import mash from './mash.json';
+import Cell from './Cell';
 
 function App() {
   return (
@@ -69,8 +70,8 @@ function App() {
           <tbody>
             {mash.map(({id, cells}: any ) => (
               <tr key={id}>
-                  {cells.map(({id, game_name,pick_value, pick_result}: any) =>
-                    <td key={id} style={ pick_result ? {color:"red"}:{color: "green"} }>{game_name} {pick_value}</td>
+                  {cells.map(({id, game_name, pick_value, pick_result, pick_id}: any) =>
+                    <Cell isGame={ pick_id == null} gameName={game_name} />
                   )}
               </tr>
             ))}
