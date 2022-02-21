@@ -3,15 +3,16 @@ import GameCell from './GameCell';
 import PickCell from './PickCell';
 
 interface Props {
- isGame: boolean;   
- gameName: string;
- pickValue: number;
- pickResult: boolean;
+  id: string;
+  isGame: boolean;   
+  gameName: string;
+  pickValue: number;
+  pickResult: boolean;
 }
 
-const Cell: FC<Props> = ({ isGame, gameName, pickResult, pickValue }) => {
+const Cell: FC<Props> = ({ id, isGame, gameName, pickResult, pickValue }) => {
   return (
-    isGame ? <GameCell gameName={gameName} /> : <PickCell pickValue={pickValue} pickResult={pickResult} />
+    isGame ? <GameCell id={id} gameName={gameName} /> : <PickCell id={id} pickValue={pickValue} pickResult={pickResult} />
   );
 };
 

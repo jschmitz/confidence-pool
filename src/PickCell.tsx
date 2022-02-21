@@ -4,6 +4,7 @@ import CSS from 'csstype';
 interface PickProps {
   pickResult: boolean;
   pickValue: number;
+  id: string;
 }
 
 const incorrectStyle: CSS.Properties = {
@@ -18,9 +19,9 @@ const correctStyle: CSS.Properties = {
   borderColor: 'orange'
 };
 
-const PickCell: FC<PickProps> = ({ pickValue, pickResult }) => {
+const PickCell: FC<PickProps> = ({ id, pickValue, pickResult }) => {
   return (
-    <td style={pickResult ? incorrectStyle : correctStyle}>{pickValue}</td>
+    <td key={id} style={pickResult ? incorrectStyle : correctStyle}>{pickValue}</td>
   );
 };
 

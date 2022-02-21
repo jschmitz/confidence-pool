@@ -1,10 +1,10 @@
 [
     {
-        "id": 1,
+        "id": "player1",
         "name":"Player 1"
     },
     {
-        "id": 2,
+        "id": "player2",
         "name": "Player 2"
     }   
 ]

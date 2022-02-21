@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 
 interface GameProps {
     gameName: string;
+    id: string;
 }
 
-const GameCell: FC<GameProps> = ({ gameName }) => {
+const GameCell: FC<GameProps> = ({ id, gameName }) => {
   return (
     <>
-      <td>{gameName}</td>
+      <td key={id}>{gameName}</td>
     </>
   );
 };

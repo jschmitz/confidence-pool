@@ -1,16 +1,16 @@
 [
     {
-        "id": 1,
+        "id":"g1",
         "name":"Game 1",
         "result": "Win"
     },
     {
-        "id": 2,
+        "id": "g2",
         "name": "Game 2",
         "result": "Loss"
     },   
     {
-        "id": 3,
+        "id": "g3",
         "name": "Game 3",
         "result": ""
     }   

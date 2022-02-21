@@ -1,15 +1,15 @@
 [
     {
-        "id": 100,
+        "id": "row1",
         "cells": [
 
             {
-                "id": 1,
+                "id": "cell1",
                 "game_name":"Game 1",
                 "game_id": 1
             },
             {
-                "id": 2,
+                "id": "cell2",
                 "game_id": 1,
                 "game_result": true,
                 "player_id": 1,
@@ -18,7 +18,7 @@
                 "pick_value":3
             },
             {
-                "id": 3,
+                "id": "cell3",
                 "game_id": 1,
                 "game_result": true,
                 "player_id": 2,
@@ -29,31 +29,60 @@
         ]
     },
     {
-        "id": 200,
+        "id": "row2",
         "cells": [
 
             {
-                "id": 4,
+                "id": "cell4",
                 "game_name":"Game 2",
                 "game_id": 2
             },
             {
-                "id": 5,
+                "id": "cell5",
                 "game_id": 2,
                 "game_result": false,
                 "player_id": 1,
                 "pick_id": 3,
                 "pick_result": true,
-                "pick_value":2
+                "pick_value":1
             },
             {
-                "id": 6,
+                "id": "cell6",
                 "game_id": 2,
                 "game_result": false,
                 "player_id": 2,
                 "pick_id": 4,
                 "pick_result": true,
                 "pick_value":1
+            }
+        ]
+    },
+    {
+        "id": "row3",
+        "cells": [
+
+            {
+                "id": "cell7",
+                "game_name":"Game 2",
+                "game_id": 3
+            },
+            {
+                "id": "cell8",
+                "game_id": 3,
+                "game_result": false,
+                "player_id": 1,
+                "pick_id": 5,
+                "pick_result": true,
+                "pick_value":2
+            },
+            {
+                "id": "cell9",
+                "game_id": 3,
+                "game_result": false,
+                "player_id": 2,
+                "pick_id": 6,
+                "pick_result": true,
+                "pick_value":3
             }
         ]
     }
