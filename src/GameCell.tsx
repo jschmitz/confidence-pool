@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
 interface GameProps {
-    gameName: string;
-    id: string;
+  gameName: string;
+  id: string;
 }
 
 const GameCell: FC<GameProps> = ({ id, gameName }) => {
