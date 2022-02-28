@@ -1,14 +1,14 @@
-import { useState } from "react";
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import players from "./players.json";
+//import players from "./players.json";
 import mash from "./mash.json";
 import Cell from "./Cell";
 
 function App() {
- const [player1Total] = useState(0); 
- const [player2Total] = useState(0); 
+  const headers = mash[0].headers || [{ id: "id", label: "label" }];
+  const rows = mash[1].rows || [{ id: "id", label: "label" }];
+  const footers = mash[mash.length - 1].footers || [{ id: "id", label: [] }];
 
   return (
     <div className="App">
@@ -18,41 +18,40 @@ function App() {
         <table>
           <thead>
             <tr>
-              <th>Games</th>
-              {players.map(({ id, name }: any) => (
-                <th key={id}>{name}</th>
+              {headers.map(({ id, label }: any) => (
+                <th key={id}>{label}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {mash.map(({ id, cells }: any) => (
-                <tr key={id}>
-                  {cells.map(
-                    ({
-                      id,
-                      game_name,
-                      pick_value,
-                      pick_result,
-                      pick_id
-                    }: any) => (
-                      <Cell
-                        key={id}
-                        id={id}
-                        isGame={pick_id == null}
-                        gameName={game_name}
-                        pickValue={pick_value}
-                        pickResult={pick_result}
-                      />
-                    )
-                  )}
-                </tr>
+            {rows.map(({ id, cells }: any) => (
+              <tr key={id}>
+                {cells.map(
+                  ({
+                    id,
+                    game_name,
+                    pick_value,
+                    pick_result,
+                    pick_id
+                  }: any) => (
+                    <Cell
+                      key={id}
+                      id={id}
+                      isGame={pick_id == null}
+                      gameName={game_name}
+                      pickValue={pick_value}
+                      pickResult={pick_result}
+                    />
+                  )
+                )}
+              </tr>
             ))}
           </tbody>
           <tfoot>
             <tr>
-              <td>Totals</td>
-              <td>{player1Total}</td>
-              <td>{player2Total}</td>
+              {footers.map(({ id, label }: any) => (
+                <td key={id}>{label}</td>
+              ))}
             </tr>
           </tfoot>
         </table>
