@@ -30,14 +30,17 @@ function App() {
                   ({
                     id,
                     game_name,
+                    game_result,
                     pick_value,
                     pick_result,
-                    pick_id
+                    pick_id,
+                    cell_type
                   }: any) => (
                     <Cell
                       key={id}
                       id={id}
-                      isGame={pick_id == null}
+                      cellType={cell_type}
+                      gameResult={game_result}
                       gameName={game_name}
                       pickValue={pick_value}
                       pickResult={pick_result}

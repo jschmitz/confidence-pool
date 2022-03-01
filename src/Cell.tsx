@@ -1,21 +1,24 @@
 import React, { FC } from "react";
 import GameCell from "./GameCell";
 import PickCell from "./PickCell";
+import GameResultCell from "./GameResultCell";
 
 interface Props {
   id: string;
-  isGame: boolean;
+  cellType: string;
+  gameResult: boolean;
   gameName: string;
-  pickValue: number;
   pickResult: boolean;
+  pickValue: number;
 }
 
-const Cell: FC<Props> = ({ id, isGame, gameName, pickResult, pickValue }) => {
-  return isGame ? (
-    <GameCell id={id} gameName={gameName} />
-  ) : (
-    <PickCell id={id} pickValue={pickValue} pickResult={pickResult} />
-  );
+const Cell: FC<Props> = ({ id, cellType, gameResult, gameName, pickResult, pickValue }) => {
+  switch(cellType){
+    case 'pick': return <PickCell id={id} pickValue={pickValue} pickResult={pickResult} />;
+    case 'game': return <GameCell id={id} gameName={gameName} />;
+    case 'game_result': return <GameResultCell id={id} gameResult={gameResult} />
+    default: return <GameResultCell id={id} gameResult={gameResult} />
+  }
 };
 
 export default Cell;
