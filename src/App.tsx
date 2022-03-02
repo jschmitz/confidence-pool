@@ -33,7 +33,6 @@ function App() {
                     game_result,
                     pick_value,
                     pick_result,
-                    pick_id,
                     cell_type
                   }: any) => (
                     <Cell
