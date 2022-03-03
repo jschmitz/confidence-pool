@@ -12,12 +12,23 @@ interface Props {
   pickValue: number;
 }
 
-const Cell: FC<Props> = ({ id, cellType, gameResult, gameName, pickResult, pickValue }) => {
-  switch(cellType){
-    case 'pick': return <PickCell id={id} pickValue={pickValue} pickResult={pickResult} />;
-    case 'game': return <GameCell id={id} gameName={gameName} />;
-    case 'game_result': return <GameResultCell id={id} gameResult={gameResult} />
-    default: return <GameResultCell id={id} gameResult={gameResult} />
+const Cell: FC<Props> = ({
+  id,
+  cellType,
+  gameResult,
+  gameName,
+  pickResult,
+  pickValue
+}) => {
+  switch (cellType) {
+    case "pick":
+      return <PickCell id={id} pickValue={pickValue} pickResult={pickResult} />;
+    case "game":
+      return <GameCell id={id} gameName={gameName} />;
+    case "game_result":
+      return <GameResultCell id={id} gameResult={gameResult} />;
+    default:
+      return <GameResultCell id={id} gameResult={gameResult} />;
   }
 };
 

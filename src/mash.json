@@ -102,7 +102,7 @@
                     },
                     {
                         "id": "cell93",
-                        "game_result": false,
+                        "game_result": null,
                         "game_id": 1,
                         "cell_type": "game_result"
                     },

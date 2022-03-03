@@ -18,12 +18,31 @@ const correctStyle: CSS.Properties = {
   borderColor: "orange"
 };
 
+function selected(result: boolean) {
+  if (result) {
+    return "Win";
+  } else if (result === null) {
+    return "TBD";
+  } else if (!result) {
+    return "Loss";
+  } else {
+    return "TBD";
+  }
+}
+
 const GameResultCell: FC<GameResultProps> = ({ id, gameResult }) => {
-  const msg = gameResult ? "Win" : "Loss";
-  console.log(msg);
+  const options = ["TBD", "Win", "Loss"];
   return (
     <td key={id} style={gameResult ? incorrectStyle : correctStyle}>
-      {msg}
+      <select id={`game_result_{id}`} name="title" value={selected(gameResult)}>
+        {options.map((item: any) => {
+          return (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          );
+        })}
+      </select>
     </td>
   );
 };
