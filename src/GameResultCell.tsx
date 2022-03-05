@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import CSS from "csstype";
 
 interface GameResultProps {
@@ -32,9 +32,16 @@ function selected(result: boolean) {
 
 const GameResultCell: FC<GameResultProps> = ({ id, gameResult }) => {
   const options = ["TBD", "Win", "Loss"];
+
+  const [selectedOption, setSelectedOption] = useState<string>(selected(gameResult));
+  const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+  };
+
   return (
     <td key={id} style={gameResult ? incorrectStyle : correctStyle}>
-      <select id={`game_result_{id}`} name="title" value={selected(gameResult)}>
+      <select id={`game_result_{id}`} name="title" value={selectedOption} onChange={selectChange}>
         {options.map((item: any) => {
           return (
             <option key={item} value={item}>
