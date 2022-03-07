@@ -30,17 +30,35 @@ function selected(result: boolean) {
   }
 }
 
+function selectedToBool(selected: string): boolean{
+  if(selected === "Win"){
+    return true;
+  }else if(selected === "Loss"){
+    return false;
+  }else if(selected === "TBD"){
+    return false;
+  }else{
+    return false;
+  }
+}
+
+function styleFor(result: boolean){
+  return result ? correctStyle : incorrectStyle;
+}
+
 const GameResultCell: FC<GameResultProps> = ({ id, gameResult }) => {
   const options = ["TBD", "Win", "Loss"];
 
+  const [selectedStyle, setStyle] = useState<object>(styleFor(gameResult));
   const [selectedOption, setSelectedOption] = useState<string>(selected(gameResult));
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSelectedOption(value);
+    setStyle(styleFor(selectedToBool(value)))
   };
 
   return (
-    <td key={id} style={gameResult ? incorrectStyle : correctStyle}>
+    <td key={id} style={selectedStyle}>
       <select id={`game_result_{id}`} name="title" value={selectedOption} onChange={selectChange}>
         {options.map((item: any) => {
           return (
