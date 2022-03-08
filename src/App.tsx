@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-//import players from "./players.json";
 import mash from "./mash.json";
 import Cell from "./Cell";
 

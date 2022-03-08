@@ -5,6 +5,7 @@ interface PickProps {
   pickResult: boolean;
   pickValue: number;
   id: string;
+  gameResult: boolean;
 }
 
 const incorrectStyle: CSS.Properties = {
@@ -19,9 +20,15 @@ const correctStyle: CSS.Properties = {
   borderColor: "orange"
 };
 
-const PickCell: FC<PickProps> = ({ id, pickValue, pickResult }) => {
+function styleFor(pickResult: boolean, gameResult: boolean): CSS.Properties {
+  console.log(`game result: ${gameResult}`);
+  console.log(`pick result: ${pickResult}`);
+  return gameResult === pickResult ? correctStyle : incorrectStyle;
+}
+
+const PickCell: FC<PickProps> = ({ id, pickValue, pickResult, gameResult }) => {
   return (
-    <td key={id} style={pickResult ? incorrectStyle : correctStyle}>
+    <td key={id} style={styleFor(pickResult, gameResult)}>
       {pickValue}
     </td>
   );

@@ -43,7 +43,8 @@
                         "pick_id": 1,
                         "pick_result": true,
                         "pick_value": 3,
-                        "cell_type": "pick"
+                        "cell_type": "pick",
+                        "game_result": true
                     },
                     {
                         "id": "cell3",
@@ -52,7 +53,8 @@
                         "pick_id": 2,
                         "pick_result": false,
                         "pick_value": 2,
-                        "cell_type": "pick"
+                        "cell_type": "pick",
+                        "game_result": true
                     }
                 ]
             },
@@ -78,16 +80,18 @@
                         "pick_id": 3,
                         "pick_result": true,
                         "pick_value": 1,
-                        "cell_type": "pick"
+                        "cell_type": "pick",
+                        "game_result": false
                     },
                     {
                         "id": "cell6",
                         "game_id": 2,
                         "player_id": 2,
                         "pick_id": 4,
-                        "pick_result": true,
+                        "pick_result": false,
                         "pick_value": 1,
-                        "cell_type": "pick"
+                        "cell_type": "pick",
+                        "game_result": false
                     }
                 ]
             },
@@ -113,7 +117,8 @@
                         "pick_id": 5,
                         "pick_result": true,
                         "pick_value": 2,
-                        "cell_type": "pick"
+                        "cell_type": "pick",
+                        "game_result": null
                     },
                     {
                         "id": "cell9",
@@ -122,7 +127,8 @@
                         "pick_id": 6,
                         "pick_result": true,
                         "pick_value": 3,
-                        "cell_type": "pick"
+                        "cell_type": "pick",
+                        "game_result": null
                     }
                 ]
             }
@@ -140,11 +146,11 @@
             },
             {
                 "id": "footer2",
-                "label": "6"
+                "label": "3"
             },
             {
                 "id": "footer3",
-                "label": "4"
+                "label": "1"
             }
         ]
     }
