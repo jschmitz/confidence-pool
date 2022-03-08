@@ -21,8 +21,6 @@ const correctStyle: CSS.Properties = {
 };
 
 function styleFor(pickResult: boolean, gameResult: boolean): CSS.Properties {
-  console.log(`game result: ${gameResult}`);
-  console.log(`pick result: ${pickResult}`);
   return gameResult === pickResult ? correctStyle : incorrectStyle;
 }
 
