@@ -18,6 +18,34 @@ function App() {
     setStateMash(setFooter(JSON.stringify(stateMash), 2, "1,000,000"));
   };
 
+  const totalButtonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setStateMash(setTotals(JSON.stringify(stateMash)));
+  };
+
+  function setTotals(mashCopy: string) {
+    const clonedMash = JSON.parse(mashCopy);
+    const numPlayers = clonedMash[0]["headers"].length - 2;
+    const totals = Array(numPlayers).fill(0);
+
+    Array.from(clonedMash[1]["rows"]).forEach((row: any) => {
+      const gameResult = row.cells[1].game_result;
+      row.cells.forEach((cell: any, index: number) => {
+        if (index < 1) return;
+
+        if (gameResult === cell.pick_result) {
+          totals[index - 2] += cell.pick_value;
+        }
+      });
+    });
+
+    totals.forEach((total: any, index: number) => {
+      clonedMash[2]["footers"][index + 2]["label"] = total;
+    });
+
+    return clonedMash;
+  }
+
   function setFooter(mashCopy: string, index: number, newValue: string) {
     const clonedMash = JSON.parse(mashCopy);
     const f = clonedMash[2]["footers"].find(
@@ -34,6 +62,9 @@ function App() {
         <h1>Confidence Pool</h1>
         <button type="button" onClick={buttonHandler}>
           Update Player 1 FTW
+        </button>
+        <button type="button" onClick={totalButtonHandler}>
+          Total
         </button>
         <table>
           <thead>
