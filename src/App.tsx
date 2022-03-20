@@ -7,11 +7,9 @@ import Cell from "./Cell";
 function App() {
   const [stateMash, setStateMash] = useState(mash);
 
-  const headers = mash[0].headers || [{ id: "id", label: "label" }];
-  const rows = mash[1].rows || [{ id: "id", label: "label" }];
-  const footers = stateMash[mash.length - 1].footers || [
-    { id: "id", label: [] }
-  ];
+  const headers = mash.header_cells
+  const rows = mash.body_rows
+  const footers = stateMash.footer_cells
 
   const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -25,10 +23,10 @@ function App() {
 
   function setTotals(mashCopy: string) {
     const clonedMash = JSON.parse(mashCopy);
-    const numPlayers = clonedMash[0]["headers"].length - 2;
+    const numPlayers = clonedMash.header_cells.length - 2;
     const totals = Array(numPlayers).fill(0);
 
-    Array.from(clonedMash[1]["rows"]).forEach((row: any) => {
+    Array.from(clonedMash.body_rows).forEach((row: any) => {
       const gameResult = row.cells[1].game_result;
       row.cells.forEach((cell: any, index: number) => {
         if (index < 1) return;
@@ -40,7 +38,7 @@ function App() {
     });
 
     totals.forEach((total: any, index: number) => {
-      clonedMash[2]["footers"][index + 2]["label"] = total;
+      clonedMash.footer_cells[index + 2]["label"] = total;
     });
 
     return clonedMash;
@@ -48,7 +46,7 @@ function App() {
 
   function setFooter(mashCopy: string, index: number, newValue: string) {
     const clonedMash = JSON.parse(mashCopy);
-    const f = clonedMash[2]["footers"].find(
+    const f = clonedMash.footer_cells.find(
       (total: any) => total.id == `footer${index}`
     );
     f.label = newValue;
