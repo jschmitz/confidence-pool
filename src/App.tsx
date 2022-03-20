@@ -4,12 +4,56 @@ import "./App.css";
 import mash from "./mash.json";
 import Cell from "./Cell";
 
+export interface IMash {
+    header_cells: IHeader[],
+    body_rows: IBodyRow[],
+    footer_cells: IFooter[]
+}
+
+interface IHeader {
+    id: string,
+    label: string
+}
+
+interface IGameCell {
+    id: string,
+    game_name: string,
+    game_id: number,
+    cell_type: string
+}
+
+interface IGameResultCell {
+    id: string,
+    game_result: boolean,
+    game_id: number,
+    cell_type: string
+}
+
+interface IPickCell {
+    id: string,
+    game_id: number,
+    player_id: number,
+    pick_id: number,
+    pick_result: boolean,
+    pick_value: number,
+    cell_type: string,
+    game_result: boolean
+}
+
+type Cell = IGameCell | IGameResultCell | IPickCell
+
+interface IBodyRow {
+    id: string,
+    cells:  Cell[]
+}
+
+interface IFooter {
+    id: string,
+    label: string
+}
+
 function App() {
   const [stateMash, setStateMash] = useState(mash);
-
-  const headers = mash.header_cells
-  const rows = mash.body_rows
-  const footers = stateMash.footer_cells
 
   const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -22,22 +66,21 @@ function App() {
   };
 
   function setTotals(mashCopy: string) {
-    const clonedMash = JSON.parse(mashCopy);
+    const clonedMash: IMash = JSON.parse(mashCopy);
     const numPlayers = clonedMash.header_cells.length - 2;
     const totals = Array(numPlayers).fill(0);
 
-    Array.from(clonedMash.body_rows).forEach((row: any) => {
-      const gameResult = row.cells[1].game_result;
-      row.cells.forEach((cell: any, index: number) => {
-        if (index < 1) return;
-
-        if (gameResult === cell.pick_result) {
-          totals[index - 2] += cell.pick_value;
+    clonedMash.body_rows.forEach((row: IBodyRow) => {
+      row.cells.forEach((cell: Cell, index: number) => {
+        if ("game_result" in cell && "pick_result" in cell){
+          if (cell.game_result === cell.pick_result) {
+            totals[index - 2] += cell.pick_value;
+          }
         }
       });
     });
 
-    totals.forEach((total: any, index: number) => {
+    totals.forEach((total, index) => {
       clonedMash.footer_cells[index + 2]["label"] = total;
     });
 
@@ -47,7 +90,7 @@ function App() {
   function setFooter(mashCopy: string, index: number, newValue: string) {
     const clonedMash = JSON.parse(mashCopy);
     const f = clonedMash.footer_cells.find(
-      (total: any) => total.id == `footer${index}`
+      (footerCell: IFooter) => footerCell.id == `footer${index}`
     );
     f.label = newValue;
     return clonedMash;
@@ -67,13 +110,13 @@ function App() {
         <table>
           <thead>
             <tr>
-              {headers.map(({ id, label }: any) => (
+              {stateMash.header_cells.map(({ id, label }: IHeader) => (
                 <th key={id}>{label}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {rows.map(({ id, cells }: any) => (
+            {stateMash.body_rows.map(({ id, cells}) => (
               <tr key={id}>
                 {cells.map(
                   ({
@@ -83,15 +126,15 @@ function App() {
                     pick_value,
                     pick_result,
                     cell_type
-                  }: any) => (
+                  }) => (
                     <Cell
                       key={id}
                       id={id}
                       cellType={cell_type}
-                      gameResult={game_result}
-                      gameName={game_name}
-                      pickValue={pick_value}
-                      pickResult={pick_result}
+                      gameResult={game_result || false}
+                      gameName={game_name || ""}
+                      pickValue={pick_value || 0}
+                      pickResult={pick_result || false}
                     />
                   )
                 )}
@@ -100,7 +143,7 @@ function App() {
           </tbody>
           <tfoot>
             <tr>
-              {footers.map(({ id, label }: any) => (
+              {stateMash.footer_cells.map(({ id, label }) => (
                 <td key={id}>{label}</td>
               ))}
             </tr>

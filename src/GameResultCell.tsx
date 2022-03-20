@@ -67,7 +67,7 @@ const GameResultCell: FC<GameResultProps> = ({ id, gameResult }) => {
         value={selectedOption}
         onChange={selectChange}
       >
-        {options.map((item: any) => {
+        {options.map((item) => {
           return (
             <option key={item} value={item}>
               {item}

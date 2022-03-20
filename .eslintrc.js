@@ -11,6 +11,6 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
   ],
   rules: {
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "error"
   }
 };
