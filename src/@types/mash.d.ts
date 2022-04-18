@@ -1,4 +1,3 @@
-// mash.ts
 export interface IMash {
   header_cells: IHeader[];
   body_rows: IBodyRow[];
@@ -39,7 +38,7 @@ export type TCell = IGameCell | IGameResultCell | IPickCell;
 
 export interface IBodyRow {
   id: string;
-  cells: TCell[];
+  cells: Cell[];
 }
 
 export interface IFooter {
