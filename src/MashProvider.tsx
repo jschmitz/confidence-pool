@@ -1,6 +1,13 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import mashData from "./mash.json";
-import { IMash, IBodyRow, TCell, IFooter } from "./@types/mash";
+import {
+  IMash,
+  IBodyRow,
+  TCell,
+  IFooter,
+  IGameResultCell,
+  IPickCell
+} from "./@types/mash";
 
 export type Props = {
   children: ReactNode;
@@ -10,6 +17,7 @@ export type IMashContextType = {
   mashContextData: IMash;
   setTotals: () => void;
   setFooter: (index: number, newValue: string) => void;
+  setGameResult: (id: string, value: boolean) => void;
 };
 
 export const MashContext = createContext<IMashContextType | null>(null);
@@ -25,10 +33,11 @@ export default function MashProvider(props: Props) {
     const totals = Array(numPlayers).fill(0);
 
     clonedMash.body_rows.forEach((row: IBodyRow) => {
+      const gameResult = row.cells[1].game_result;
       row.cells.forEach((cell: TCell, index: number) => {
-        if ("game_result" in cell && "pick_result" in cell) {
-          if (cell.game_result === cell.pick_result) {
-            totals[index - 2] += cell.pick_value;
+        if (cell.cell_type === "pick") {
+          if (gameResult === (cell as IPickCell).pick_result) {
+            totals[index - 2] += (cell as IPickCell).pick_value;
           }
         }
       });
@@ -56,8 +65,28 @@ export default function MashProvider(props: Props) {
     });
   };
 
+  const setGameResult = (id: string, value: boolean): void => {
+    const clonedMash: IMash = mashContextData;
+
+    clonedMash.body_rows.forEach((element) => {
+      const rCell = element.cells.find((cell: TCell) => {
+        return cell.id === id;
+      });
+
+      if (rCell !== undefined) {
+        rCell.game_result = value;
+
+        setMash((prevState) => {
+          return { ...prevState, ...clonedMash };
+        });
+      }
+    });
+  };
+
   return (
-    <MashContext.Provider value={{ mashContextData, setTotals, setFooter }}>
+    <MashContext.Provider
+      value={{ mashContextData, setTotals, setFooter, setGameResult }}
+    >
       {children}
     </MashContext.Provider>
   );

@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
 import CSS from "csstype";
 
+import { IMashContextType, MashContext } from "./MashProvider";
+
 interface GameResultProps {
   gameResult: boolean;
   id: string;
@@ -47,6 +49,10 @@ function styleFor(result: boolean) {
 }
 
 const GameResultCell: FC<GameResultProps> = ({ id, gameResult }) => {
+  const { setTotals, setGameResult } = React.useContext(
+    MashContext
+  ) as IMashContextType;
+
   const options = ["TBD", "Win", "Loss"];
 
   const [selectedStyle, setStyle] = useState<object>(styleFor(gameResult));
@@ -55,8 +61,11 @@ const GameResultCell: FC<GameResultProps> = ({ id, gameResult }) => {
   );
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
+
+    setGameResult(id, selectedToBool(value));
     setSelectedOption(value);
     setStyle(styleFor(selectedToBool(value)));
+    setTotals();
   };
 
   return (
