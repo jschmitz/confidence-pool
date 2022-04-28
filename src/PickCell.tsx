@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import CSS from "csstype";
+import { IMashContextType, MashContext } from "./MashProvider";
 
 interface PickProps {
   pickResult: boolean;
   pickValue: number;
   id: string;
-  gameResult: boolean;
 }
 
 const incorrectStyle: CSS.Properties = {
@@ -20,14 +20,16 @@ const correctStyle: CSS.Properties = {
   borderColor: "orange"
 };
 
-function styleFor(pickResult: boolean, gameResult: boolean): CSS.Properties {
-  return gameResult === pickResult ? correctStyle : incorrectStyle;
-}
+const PickCell: FC<PickProps> = ({ id, pickValue, pickResult }) => {
+  const { correctPickFor } = React.useContext(MashContext) as IMashContextType;
 
-const PickCell: FC<PickProps> = ({ id, pickValue, pickResult, gameResult }) => {
+  const styleFor = (id: string): CSS.Properties => {
+    return correctPickFor(id) ? correctStyle : incorrectStyle;
+  };
+
   return (
-    <td key={id} style={styleFor(pickResult, gameResult)}>
-      {pickValue}
+    <td key={id} style={styleFor(id)}>
+      {pickResult ? "W" : "L"}-{pickValue}
     </td>
   );
 };

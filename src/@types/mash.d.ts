@@ -31,7 +31,6 @@ export interface IPickCell {
   pick_result: boolean;
   pick_value: number;
   cell_type: string;
-  game_result: boolean;
 }
 
 export type TCell = IGameCell | IGameResultCell | IPickCell;

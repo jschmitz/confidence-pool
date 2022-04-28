@@ -1,13 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import mashData from "./mash.json";
-import {
-  IMash,
-  IBodyRow,
-  TCell,
-  IFooter,
-  IGameResultCell,
-  IPickCell
-} from "./@types/mash";
+import { IMash, IBodyRow, TCell, IFooter, IPickCell } from "./@types/mash";
 
 export type Props = {
   children: ReactNode;
@@ -18,6 +11,7 @@ export type IMashContextType = {
   setTotals: () => void;
   setFooter: (index: number, newValue: string) => void;
   setGameResult: (id: string, value: boolean) => void;
+  correctPickFor: (id: string) => boolean;
 };
 
 export const MashContext = createContext<IMashContextType | null>(null);
@@ -83,9 +77,31 @@ export default function MashProvider(props: Props) {
     });
   };
 
+  const correctPickFor = (id: string): boolean => {
+    let match = true;
+    mashContextData.body_rows.forEach((row) => {
+      const gameResult = row.cells[1].game_result;
+      const rCell = row.cells.slice(2).find((cell: TCell) => {
+        return cell.id === id;
+      });
+
+      if (rCell != undefined) {
+        match = rCell.pick_result == gameResult;
+      }
+    });
+
+    return match;
+  };
+
   return (
     <MashContext.Provider
-      value={{ mashContextData, setTotals, setFooter, setGameResult }}
+      value={{
+        mashContextData,
+        setTotals,
+        setFooter,
+        setGameResult,
+        correctPickFor
+      }}
     >
       {children}
     </MashContext.Provider>

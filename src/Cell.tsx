@@ -22,14 +22,7 @@ const Cell: FC<Props> = ({
 }) => {
   switch (cellType) {
     case "pick":
-      return (
-        <PickCell
-          id={id}
-          pickValue={pickValue}
-          pickResult={pickResult}
-          gameResult={gameResult}
-        />
-      );
+      return <PickCell id={id} pickValue={pickValue} pickResult={pickResult} />;
     case "game":
       return <GameCell id={id} gameName={gameName} />;
     case "game_result":

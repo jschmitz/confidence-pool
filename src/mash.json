@@ -40,8 +40,7 @@
           "pick_id": 1,
           "pick_result": true,
           "pick_value": 3,
-          "cell_type": "pick",
-          "game_result": true
+          "cell_type": "pick"
         },
         {
           "id": "cell3",
@@ -50,8 +49,7 @@
           "pick_id": 2,
           "pick_result": false,
           "pick_value": 2,
-          "cell_type": "pick",
-          "game_result": true
+          "cell_type": "pick"
         }
       ]
     },
@@ -77,8 +75,7 @@
           "pick_id": 3,
           "pick_result": true,
           "pick_value": 1,
-          "cell_type": "pick",
-          "game_result": false
+          "cell_type": "pick"
         },
         {
           "id": "cell6",
@@ -87,8 +84,7 @@
           "pick_id": 4,
           "pick_result": false,
           "pick_value": 1,
-          "cell_type": "pick",
-          "game_result": false
+          "cell_type": "pick"
         }
       ]
     },
@@ -114,8 +110,7 @@
           "pick_id": 5,
           "pick_result": true,
           "pick_value": 2,
-          "cell_type": "pick",
-          "game_result": true
+          "cell_type": "pick"
         },
         {
           "id": "cell9",
@@ -124,8 +119,7 @@
           "pick_id": 6,
           "pick_result": true,
           "pick_value": 3,
-          "cell_type": "pick",
-          "game_result": true
+          "cell_type": "pick"
         }
       ]
     }

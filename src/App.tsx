@@ -6,31 +6,13 @@ import { IHeader } from "./@types/mash";
 import { IMashContextType, MashContext } from "./MashProvider";
 
 function App() {
-  const { mashContextData, setTotals, setFooter } = React.useContext(
-    MashContext
-  ) as IMashContextType;
-
-  const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setFooter(2, "1,000,000");
-  };
-
-  const totalButtonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setTotals();
-  };
+  const { mashContextData } = React.useContext(MashContext) as IMashContextType;
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Confidence Pool</h1>
-        <button type="button" onClick={buttonHandler}>
-          Update Player 1 FTW
-        </button>
-        <button type="button" onClick={totalButtonHandler}>
-          Total
-        </button>
         <table>
           <thead>
             <tr>
@@ -55,10 +37,10 @@ function App() {
                       key={id}
                       id={id}
                       cellType={cell_type}
-                      gameResult={game_result || false}
+                      gameResult={game_result}
                       gameName={game_name || ""}
                       pickValue={pick_value || 0}
-                      pickResult={pick_result || false}
+                      pickResult={pick_result}
                     />
                   )
                 )}
